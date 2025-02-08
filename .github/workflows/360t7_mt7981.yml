@@ -45,19 +45,6 @@ jobs:
         curl -sS -O https://github.com/Jaykwok2999/istoreos-actions/blob/main/diy/360t7_mt7981.sh && chmod +x 360t7_mt7981.sh && ./360t7_mt7981.sh
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
 
-    - name: Prepare Firmware Files
-      working-directory: /builder
-      run: |
-        mkdir -p rom
-        cp -a openwrt/bin/targets/mediatek/mt7981/*.bin rom/
-        cp -a openwrt/bin/targets/mediatek/mt7981/*.tar rom/
-
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: 360t7_mt798x
-        path: ${{ env.build_dir }}/rom/*
-
     - name: Create release
       continue-on-error: true
       uses: ncipollo/release-action@v1
