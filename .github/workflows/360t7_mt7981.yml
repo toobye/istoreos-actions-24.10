@@ -6,7 +6,7 @@ on:
 env:
   REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
   REPO_BRANCH: openwrt-21.02
-  FIRMWARE_TAG: Mediatek_filogic_hanwckf_mt7981
+  FIRMWARE_TAG: 360t7_mt7981
   
 jobs:
   Build:
@@ -42,7 +42,7 @@ jobs:
       id: compile
       continue-on-error: true
       run: |    
-        curl -sS -O https://github.com/Jaykwok2999/istoreos-actions/blob/main/diy/360t7_mt7981.sh && chmod +x hanwckf_mt7981.sh && ./hanwckf_mt7981.sh
+        curl -sS -O https://github.com/Jaykwok2999/istoreos-actions/blob/main/diy/360t7_mt7981.sh && chmod +x 360t7_mt7981.sh && ./360t7_mt7981.sh
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
 
     - name: Prepare Firmware Files
@@ -55,7 +55,7 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: hanwckf_mt798x
+        name: 360t7_mt798x
         path: ${{ env.build_dir }}/rom/*
 
     - name: Create release
