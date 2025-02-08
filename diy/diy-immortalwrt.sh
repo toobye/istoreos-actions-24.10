@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 修改默认IP
-sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
 # profile
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
@@ -57,6 +57,7 @@ rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
+rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/istoreos_ipk/tailscale/tailscale
 
 # Git稀疏克隆，只克隆指定目录到本地
@@ -130,8 +131,8 @@ rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
 
 # 更改内核
-rm -rf include/kernel-6.6
-cp -af feeds/istoreos_ipk/patch/diy/include/6.6.73/kernel-6.6 include/
+# rm -rf include/kernel-6.6
+# cp -af feeds/istoreos_ipk/patch/diy/include/6.6.73/kernel-6.6 include/
 
 # tailscale
 # rm -rf feeds/packages/net/tailscale/*
