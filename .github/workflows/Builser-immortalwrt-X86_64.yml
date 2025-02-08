@@ -101,11 +101,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         echo 'src-git store https://github.com/linkease/istore.git;main' >> feeds.conf.default
-        echo 'src-git third https://github.com/jjm2473/openwrt-third.git;main' >> feeds.conf.default
-        echo 'src-git third_party https://github.com/linkease/istore-packages.git;main' >>feeds.conf.default
-        echo 'src-git diskman https://github.com/jjm2473/luci-app-diskman.git;dev' >>feeds.conf.default
-        echo 'src-git oaf https://github.com/jjm2473/OpenAppFilter.git;dev4' >>feeds.conf.default
-        echo 'src-git jjm2473_apps https://github.com/jjm2473/openwrt-apps.git;main' >>feeds.conf.default
+        echo 'src-git third https://github.com/zijieKwok/istoreos-theme.git;main' >> feeds.conf.default
         echo 'src-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk.git;main' >>feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
@@ -118,7 +114,7 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
-        $GITHUB_WORKSPACE/scripts/zero.sh
+        $GITHUB_WORKSPACE/scripts/init-settings.sh
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
 
     - name: Download DL Package
