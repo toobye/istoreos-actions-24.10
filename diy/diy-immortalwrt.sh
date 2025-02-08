@@ -3,6 +3,9 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
+# 修改名称
+sed -i 's/ImmortalWrt/iStoreOS/' package/base-files/files/bin/config_generate
+
 # profile
 sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
 sed -ri 's/(export PATH=")[^"]*/\1%PATH%:\/opt\/bin:\/opt\/sbin:\/opt\/usr\/bin:\/opt\/usr\/sbin/' package/base-files/files/etc/profile
@@ -14,8 +17,23 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 # sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
-# 修改默认密码
-sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+# default-settings
+git clone --depth=1 -b openwrt-24.10 https://github.com/Jaykwok2999/default-settings package/default-settings
+
+# Docker
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+pushd feeds/packages
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+popd
 
 # uwsgi
 sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
@@ -83,17 +101,26 @@ rm -rf package/helloworld/luci-app-openclash
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
 # Mosdns
-# git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-# git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
+git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
+git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
+# Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
+rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
+git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
+git clone https://git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
+git clone https://git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
+git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
+git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
+
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
-# default-settings
-# git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
+# smartdns
+rm -rf feeds/{packages/netsmartdns,luci/applications/luci-app-smartdns}
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages smartdns luci-app-smartdns
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
