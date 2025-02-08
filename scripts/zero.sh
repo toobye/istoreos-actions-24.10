@@ -33,5 +33,5 @@ chmod +x files/etc/config/default_passwall
 chmod +x files/etc/config/default_openclash
 
 # 更新default-settings
-curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/zzz-default-settings
-curl -L -o package/lean/default-settings/po/zh-cn/default.po https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default.po
+# curl -L -o package/lean/default-settings/files/zzz-default-settings https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/zzz-default-settings
+# curl -L -o package/lean/default-settings/po/zh-cn/default.po https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/master/files/default.po
