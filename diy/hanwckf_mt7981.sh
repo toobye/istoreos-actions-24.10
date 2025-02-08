@@ -39,14 +39,6 @@ sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/sha
 sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
-# bash
-echo -e "${YELLOW}Bash${NC}"
-sed -i 's#ash#bash#g' package/base-files/files/etc/passwd
-sed -i '\#export ENV=/etc/shinit#a export HISTCONTROL=ignoredups' package/base-files/files/etc/profile
-mkdir -p files/root
-curl -so files/root/.bash_profile https://git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
-curl -so files/root/.bashrc https://git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
-
 # Nginx
 echo -e "${YELLOW}Nginx${NC}"
 sed -i "s/large_client_header_buffers 2 1k/large_client_header_buffers 4 32k/g" feeds/packages/net/nginx-util/files/uci.conf.template
@@ -110,23 +102,23 @@ sed -i 's/luci-theme-bootstrap/luci-theme-kucat/g' feeds/luci/collections/luci/M
 sed -i 's/luci-theme-bootstrap/luci-theme-kucat/g' feeds/luci/collections/luci-nginx/Makefile
 
 ##加入作者信息
-sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ZeroWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
-sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By OPPEN321'/g" package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='OpenWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
 
-sed -i "2iuci set istore.istore.channel='ae86_daodao'" package/emortal/default-settings/files/99-default-settings
+sed -i "2iuci set istore.istore.channel='openwrt_jaykwok'" package/emortal/default-settings/files/99-default-settings
 sed -i "3iuci commit istore" package/emortal/default-settings/files/99-default-settings
 
 
 ##WiFi
-sed -i "s/MT7986_AX6000_2.4G/ZeroWrt-2.4G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b0.dat
-sed -i "s/MT7986_AX6000_5G/ZeroWrt-5G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b1.dat
+sed -i "s/MT7986_AX6000_2.4G/OpenWrt-2.4G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b0.dat
+sed -i "s/MT7986_AX6000_5G/OpenWrt-5G/g" package/mtk/drivers/wifi-profile/files/mt7986/mt7986-ax6000.dbdc.b1.dat
 
-sed -i "s/MT7981_AX3000_2.4G/ZeroWrt-2.4G/g" package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b0.dat
-sed -i "s/MT7981_AX3000_5G/ZeroWrt-5G/g" package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b1.dat
+sed -i "s/MT7981_AX3000_2.4G/OpenWrt-2.4G/g" package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b0.dat
+sed -i "s/MT7981_AX3000_5G/OpenWrt-5G/g" package/mtk/drivers/wifi-profile/files/mt7981/mt7981.dbdc.b1.dat
 
 ##New WiFi
-sed -i "s/ImmortalWrt-2.4G/ZeroWrt-2.4G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
-sed -i "s/ImmortalWrt-5G/ZeroWrt-5G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i "s/ImmortalWrt-2.4G/OpenWrt-2.4G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i "s/ImmortalWrt-5G/OpenWrt-5G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 
 
 ##更新FQ
@@ -200,11 +192,7 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-
 
 # 修改名称
 echo -e "${YELLOW}修改名称${NC}"
-sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
-
-# Theme
-echo -e "${YELLOW}Theme${NC}"
-git clone https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat -b js
+sed -i "s/hostname='.*'/hostname='OpenWrt'/g" package/base-files/files/bin/config_generate
 
 # 进阶设置
 echo -e "${YELLOW}进阶设置${NC}"
@@ -217,30 +205,20 @@ sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin
 sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 
-# ZeroWrt选项菜单
-echo -e "${YELLOW}ZeroWrt选项菜单${NC}"
-mkdir -p files/bin
-curl -L -o files/bin/ZeroWrt https://git.kejizero.online/zhao/files/raw/branch/main/bin/ZeroWrt
-chmod +x files/bin/ZeroWrt
-mkdir -p files/root
-curl -L -o files/root/version.txt https://git.kejizero.online/zhao/files/raw/branch/main/bin/version.txt
-chmod +x files/root/version.txt
-
-
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
 # 加载 .config
 echo -e "${YELLOW}加载 .config${NC}"
 echo -e "${YELLOW}加载自定义配置...${NC}"
-curl -skL https://git.kejizero.online/zhao/files/raw/branch/main/Config/mtk.config -o .config
+curl -skL https://github.com/Jaykwok2999/istoreos-actions/blob/main/configs/mtk.config -o .config
 
 # 生成默认配置
 echo -e "${GREEN}生成默认配置...${NC}"
 make defconfig
 
 # 编译 ZeroWrt
-echo -e "${BLUE}开始编译 ZeroWrt...${NC}"
+echo -e "${BLUE}开始编译 OpenWrt...${NC}"
 echo -e "${YELLOW}使用所有可用的 CPU 核心进行并行编译...${NC}"
 make -j$(nproc) || make -j1 || make -j1 V=s
   
