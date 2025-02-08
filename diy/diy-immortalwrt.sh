@@ -54,29 +54,27 @@ sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mw
 # samba4
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
 
-# linkease调至NAS
-sed -i 's/services/nas/g' feeds/nas-packages-luci/luci/luci-app-linkease/luasrc/controller/linkease.lua
-sed -i 's/services/nas/g' feeds/nas-packages-luci/luci/luci-app-linkease/luasrc/view/linkease_status.htm
-
 # HD磁盘工具调至NAS
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-hd-idle/root/usr/share/luci/menu.d/luci-app-hd-idle.json
 
 # 修改socat为端口转发
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/third_party/luci-app-socat/po/zh-cn/socat.po
+sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/luci/applications/luci-app-socat/po/zh-cn/socat.po
 
 ##加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='iStoreOS-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,ddns-go,alist}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/packages/utils/v2dat
-rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/istoreos_ipk/op-daed
-rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/istoreos_ipk/tailscale/tailscale
+rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/luci/applications/luci-app-ddns-go
+rm -rf feeds/luci/applications/luci-app-alist
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -127,12 +125,6 @@ rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
-# Lucky
-# git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-
-# luci-app-webdav
-git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
-
 # unzip
 rm -rf feeds/packages/utils/unzip
 git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
@@ -157,18 +149,10 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
 
-# 更改内核
-# rm -rf include/kernel-6.6
-# cp -af feeds/istoreos_ipk/patch/diy/include/6.6.73/kernel-6.6 include/
-
 # tailscale
 # rm -rf feeds/packages/net/tailscale/*
 # cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-
-# 增加驱动补丁
-# cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/993-bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch target/linux/x86/patches-6.6/
-# cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/996-intel-igc-i225-i226-disable-eee.patch target/linux/x86/patches-6.6/
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
