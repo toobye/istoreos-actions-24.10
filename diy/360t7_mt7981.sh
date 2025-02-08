@@ -142,7 +142,7 @@ curl -skL https://github.com/Jaykwok2999/istoreos-actions/blob/main/configs/360T
 echo -e "${GREEN}生成默认配置...${NC}"
 make defconfig
 
-# 编译 ZeroWrt
+# 编译 OpenWrt
 echo -e "${BLUE}开始编译 OpenWrt...${NC}"
 echo -e "${YELLOW}使用所有可用的 CPU 核心进行并行编译...${NC}"
 make -j$(nproc) || make -j1 || make -j1 V=s
