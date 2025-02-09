@@ -6,6 +6,7 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 # 修改名称
 sed -i 's/ImmortalWrt/OpenWrt/' package/base-files/files/bin/config_generate
 sed -i 's/ImmortalWrt/OpenWrt/' include/version.mk
+sed -i 's/24.10-SNAPSHOT/24.10.0-rc4/' include/version.mk
 
 ##New WiFi
 sed -i "s/ImmortalWrt-2.4G/OpenWrt-2.4G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
