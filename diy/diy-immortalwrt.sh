@@ -72,7 +72,7 @@ sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='OpenWrt-$(date +%Y%m%d)
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,ddns-go,alist}
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/istoreos_ipk/op-daed
