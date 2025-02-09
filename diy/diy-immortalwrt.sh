@@ -160,7 +160,7 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 
 # 更改 banner
 rm -rf package/base-files/files/etc/banner
-cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
+cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 # 复制openclash
 cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
