@@ -149,6 +149,10 @@ sed -i 's,frp 客户端,frpc 客户端,g' feeds/luci/applications/luci-app-frpc/
 #     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 # popd
 
+# 修改登录字符
+rm -rf feeds/luci/modules/luci-base/po/zh_Hans/base.po
+cp -af feeds/istoreos_ipk/patch/diy/base.po feeds/luci/modules/luci-base/po/zh_Hans/
+
 # 修改默认密码
 sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 
