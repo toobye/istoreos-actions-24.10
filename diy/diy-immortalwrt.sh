@@ -60,6 +60,8 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-hd-idle/root/usr/shar
 # 修改FileBrowser
 sed -i 's/msgstr "FileBrowser"/msgstr "文件浏览器"/g' feeds/luci/applications/luci-app-filebrowser/po/zh_Hans/filebrowser.po
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-filebrowser/root/usr/share/luci/menu.d/luci-app-filebrowser.json
+sed -i 's/msgstr "FileBrowser"/msgstr "文件浏览器GO"/g' feeds/luci/applications/luci-app-filebrowser-go/po/zh_Hans/filebrowser.po
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-filebrowser-go/root/usr/share/luci/menu.d/luci-app-filebrowser.json
 
 # 修改socat为端口转发
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/luci/applications/luci-app-socat/po/zh_Hans/socat.po
