@@ -3,11 +3,6 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
-# 修改默认密码
-sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-sed -i 's/root::0:0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' /etc/shadow
-sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' /etc/shadow
-
 # 修改名称
 sed -i 's/ImmortalWrt/OpenWrt/' package/base-files/files/bin/config_generate
 sed -i 's/ImmortalWrt/OpenWrt/' include/version.mk
@@ -15,11 +10,6 @@ sed -i 's/ImmortalWrt/OpenWrt/' include/version.mk
 ##New WiFi
 sed -i "s/ImmortalWrt-2.4G/OpenWrt-2.4G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 sed -i "s/ImmortalWrt-5G/OpenWrt-5G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
-
-# profile
-sed -i 's#\\u@\\h:\\w\\\$#\\[\\e[32;1m\\][\\u@\\h\\[\\e[0m\\] \\[\\033[01;34m\\]\\W\\[\\033[00m\\]\\[\\e[32;1m\\]]\\[\\e[0m\\]\\\$#g' package/base-files/files/etc/profile
-sed -ri 's/(export PATH=")[^"]*/\1%PATH%:\/opt\/bin:\/opt\/sbin:\/opt\/usr\/bin:\/opt\/usr\/sbin/' package/base-files/files/etc/profile
-sed -i '/PS1/a\export TERM=xterm-color' package/base-files/files/etc/profile
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -153,6 +143,9 @@ pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
 
+# 修改默认密码
+sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+
 # NTP
 sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
 sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
@@ -162,6 +155,9 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 # 更改 banner
 rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
+
+# 复制openclash
+cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
 
 # tailscale
 # rm -rf feeds/packages/net/tailscale/*
