@@ -79,8 +79,11 @@ rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/istoreos_ipk/tailscale/tailscale
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/luci/applications/luci-app-ddns-go
-rm -rf feeds/luci/applications/luci-app-alist
+rm -rf feeds/istoreos_ipk/ddns-go
+rm -rf feeds/istoreos_ipk/luci-app-ddns-go
+rm -rf feeds/istoreos_ipk/msd_lite
+rm -rf feeds/istoreos_ipk/op-fileBrowser
+rm -rf feeds/istoreos_ipk/op-mosdns
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
