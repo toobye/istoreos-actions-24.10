@@ -84,6 +84,9 @@ rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
 rm -rf feeds/istoreos_ipk/op-mosdns
+cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
+cp -af feeds/istoreos_ipk/ddns-go feeds/packages/net/
+cp -af feeds/istoreos_ipk/luci-app-ddns-go feeds/luci/applications/
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
