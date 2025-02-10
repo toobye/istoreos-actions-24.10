@@ -73,14 +73,14 @@ sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
+rm -rf feeds/packages/net/ddns-go feeds/luci/applications/luci-app-ddns-go
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/istoreos_ipk/tailscale/tailscale
 rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/istoreos_ipk/ddns-go
-rm -rf feeds/istoreos_ipk/luci-app-ddns-go
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
 rm -rf feeds/istoreos_ipk/op-mosdns
@@ -164,10 +164,6 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 # 更改 banner
 rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
-
-# 复制openclash
-rm -rf feeds/luci/applications/luci-app-openclash
-cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
 
 # tailscale
 # rm -rf feeds/packages/net/tailscale/*
