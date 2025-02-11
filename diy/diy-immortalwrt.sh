@@ -146,9 +146,9 @@ sed -i 's,frp 服务器,frps 服务器,g' feeds/luci/applications/luci-app-frps/
 sed -i 's,frp 客户端,frpc 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 # 必要的补丁
-# pushd feeds/luci
-#     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-# popd
+ pushd feeds/luci
+     curl -s https://github.com/Jaykwok2999/istoreos-actions/blob/main/patch/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+ popd
 
 # 修改登录字符
 rm -rf feeds/luci/modules/luci-base/po/zh_Hans/base.po
