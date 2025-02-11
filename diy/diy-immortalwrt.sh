@@ -79,7 +79,6 @@ rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/istoreos_ipk/tailscale/tailscale
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
@@ -169,8 +168,8 @@ rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 # tailscale
-# rm -rf feeds/packages/net/tailscale/*
-# cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
+rm -rf feeds/packages/net/tailscale/*
+cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
 ./scripts/feeds update -a
