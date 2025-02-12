@@ -131,8 +131,8 @@ rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
 
 # tailscale
-rm -rf feeds/packages/net/tailscale
-cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
+# rm -rf feeds/packages/net/tailscale
+# cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
 # 增加驱动补丁
