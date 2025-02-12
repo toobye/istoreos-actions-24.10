@@ -59,7 +59,7 @@ rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
-rm -rf feeds/packages/net/tailscale
+# rm -rf feeds/packages/net/tailscale
 # rm -rf feeds/istoreos_ipk/tailscale/tailscale
 
 # Git稀疏克隆，只克隆指定目录到本地
@@ -95,7 +95,7 @@ git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # default-settings
-# git clone --depth=1 -b dev https://github.com/oppen321/default-settings package/default-settings
+git clone --depth=1 -b dev https://github.com/Jaykwok2999/default-settings package/default-settings
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
@@ -118,9 +118,9 @@ sed -i 's,frp 服务器,frps 服务器,g' feeds/luci/applications/luci-app-frps/
 sed -i 's,frp 客户端,frpc 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 # 必要的补丁
-# pushd feeds/luci
-#    curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-# popd
+pushd feeds/luci
+   curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+popd
 
 # NTP
 sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
