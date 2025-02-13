@@ -46,7 +46,7 @@ rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
-
+rm -rf feeds/istoreos_ipk/tailscale/tailscale
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
