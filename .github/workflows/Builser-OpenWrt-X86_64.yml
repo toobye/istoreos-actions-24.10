@@ -100,7 +100,6 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        echo 'src-git third https://github.com/zijieKwok/istoreos-theme.git;main' >> feeds.conf.default
         echo 'src-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk.git;main' >>feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
