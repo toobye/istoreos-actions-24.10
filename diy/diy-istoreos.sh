@@ -77,7 +77,7 @@ git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
 # Adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+# git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # default-settings
 git clone --depth=1 -b dev https://github.com/Jaykwok2999/default-settings package/default-settings
