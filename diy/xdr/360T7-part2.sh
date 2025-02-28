@@ -36,13 +36,13 @@ cp -af feeds/istoreos_ipk/patch/diy/banner  package/base-files/files/etc/banner
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 # git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 rm -rf feeds/luci/themes/luci-theme-argon
-# cp -af feeds/extraipk/theme/luci-theme-argon feeds/luci/themes/
+# cp -af feeds/istoreos_ipk/theme/luci-theme-argon feeds/luci/themes/
 
 ##更新tailscale
 # rm -rf feeds/packages/net/tailscale
 # cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-rm -rf package/feeds/extraipk/op-daed
+rm -rf package/feeds/istoreos_ipk/op-daed
 
 ##MosDNS
 rm -rf feeds/packages/net/mosdns/*
