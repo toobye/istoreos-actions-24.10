@@ -31,9 +31,7 @@ sed -i 's/192\.168\.[0-9]*\.[0-9]*/192.168.5.1/g' package/base-files/luci2/bin/c
 ##清除默认密码password
 sed -i '/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF./$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1/d' package/lean/default-settings/files/zzz-default-settings
 
-cp -af feeds/extraipk/patch/diy/banner  package/base-files/files/etc/banner
-# rm -rf feeds/extraipk/nas-packages-luci/luci/luci-app-quickstart/htdocs/luci-static/quickstart/index.js
-# cp -af feeds/extraipk/diy/index.js feeds/extraipk/nas-packages-luci/luci/luci-app-quickstart/htdocs/luci-static/quickstart/
+cp -af feeds/istoreos_ipk/patch/diy/banner  package/base-files/files/etc/banner
 # rm -rf feeds/packages/lang/golang
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 # git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
@@ -42,18 +40,18 @@ rm -rf feeds/luci/themes/luci-theme-argon
 
 ##更新tailscale
 # rm -rf feeds/packages/net/tailscale
-# cp -af feeds/extraipk/tailscale/tailscale  feeds/packages/net/
+# cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 rm -rf package/feeds/extraipk/op-daed
 
 ##MosDNS
 rm -rf feeds/packages/net/mosdns/*
-cp -af feeds/extraipk/op-mosdns/mosdns/* feeds/packages/net/mosdns/
+cp -af feeds/istoreos_ipk/op-mosdns/mosdns/* feeds/packages/net/mosdns/
 rm -rf feeds/packages/net/v2ray-geodata/*
-cp -af feeds/extraipk/op-mosdns/v2ray-geodata/* feeds/packages/net/v2ray-geodata/
+cp -af feeds/istoreos_ipk/op-mosdns/v2ray-geodata/* feeds/packages/net/v2ray-geodata/
 
 rm -rf feeds/luci/applications/luci-app-openclash/*
-cp -af feeds/extraipk/patch/wall-luci/luci-app-openclash/*  feeds/luci/applications/luci-app-openclash/
+cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash/*  feeds/luci/applications/luci-app-openclash/
 
 echo "DISTRIB_MODEL='360T7'" >> package/base-files/files/etc/openwrt_release
 target=$(grep -m 1 "CONFIG_TARGET_.*_.*=y" .config | sed "s/CONFIG_TARGET_\(.*\)_\(.*\)=y/\1\/\2/g")
