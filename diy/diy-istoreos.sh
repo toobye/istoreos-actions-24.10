@@ -11,8 +11,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 
 # 修改默认密码
 sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/istoreos-files package
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/diy package
 rm -rf include/version.mk
 cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
 
