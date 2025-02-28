@@ -10,8 +10,8 @@ env:
   REPO_BRANCH: openwrt-24.10
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: configs/360T7.config
-  DIY_P1_SH: diy/xdr/360T7-part1.sh
-  DIY_P2_SH: diy/xdr/360T7-part2.sh
+  DIY_P1_SH: diy/360T7-part1.sh
+  DIY_P2_SH: diy/360T7-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
