@@ -42,7 +42,7 @@ rm -rf feeds/luci/themes/luci-theme-argon
 # rm -rf feeds/packages/net/tailscale
 # cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-rm -rf package/feeds/istoreos_ipk/op-daed
+rm -rf feeds/istoreos_ipk/op-daed
 
 ##MosDNS
 rm -rf feeds/packages/net/mosdns/*
