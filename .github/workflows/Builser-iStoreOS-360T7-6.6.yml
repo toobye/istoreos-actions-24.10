@@ -122,6 +122,7 @@ jobs:
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+        body: |
         💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         📂 固件源码: ${{ env.REPO_URL }}
         🌳 源码分支: ${{ env.REPO_BRANCH }}
