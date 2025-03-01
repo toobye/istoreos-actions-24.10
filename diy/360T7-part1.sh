@@ -11,6 +11,6 @@
 #
 
 # Uncomment a feed source
-echo 'src-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk" >> feeds.conf.default
+echo 'src-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk' >> feeds.conf.default
 # Add feed sources
 # echo 'src-git store https://github.com/linkease/istore' >>feeds.conf.default
