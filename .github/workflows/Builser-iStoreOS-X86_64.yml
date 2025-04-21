@@ -7,7 +7,7 @@ on:
 
 env:
   REPO_URL: https://github.com/istoreos/istoreos.git
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: istoreos-24.10.0
   CONFIG_FILE: configs/x86_86_iStoreOS.config
   DIY_SCRIPT: diy/diy-istoreos.sh
   CLASH_KERNEL: amd64
