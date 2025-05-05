@@ -2,8 +2,8 @@ name: Builser-immortalwrt-X86_64
 
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: 0 22 * * *
+  schedule:
+    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
@@ -14,7 +14,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: X86_64
+  FIRMWARE_TAG: OpenWrt_X86_64
   TZ: Asia/Shanghai
 
 jobs:
