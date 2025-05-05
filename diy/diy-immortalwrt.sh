@@ -73,7 +73,6 @@ sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
-rm -rf package/helloworld/sing-box
 rm -rf feeds/packages/net/ddns-go feeds/luci/applications/luci-app-ddns-go
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/luci/applications/luci-app-openclash
@@ -104,15 +103,15 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/luci-app-openclash
+#git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
+#rm -rf package/helloworld/luci-app-openclash
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
 
 # Mosdns
-git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
+#git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
+#git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
