@@ -45,5 +45,21 @@ uci commit
 FILE_PATH="/etc/openwrt_release"
 NEW_DESCRIPTION="Compiled by JayKwok"
 sed -i "s/DISTRIB_DESCRIPTION='[^']*'/DISTRIB_DESCRIPTION='$NEW_DESCRIPTION'/" "$FILE_PATH"
+sed -i 's/ImmortalWrt/OpenWrt/' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/OpenWrt/' include/version.mk
+sed -i "s/ImmortalWrt-2.4G/OpenWrt_2.4G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i "s/ImmortalWrt-5G/OpenWrt_5G/g" package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
+sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+
+# 修改登录字符
+rm -rf feeds/luci/modules/luci-base/po/zh_Hans/base.po
+cp -af feeds/istoreos_ipk/patch/diy/base.po feeds/luci/modules/luci-base/po/zh_Hans/
+
+# 修改默认密码
+sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+
+# 更改 banner
+#rm -rf package/base-files/files/etc/banner
+#cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 exit 0
