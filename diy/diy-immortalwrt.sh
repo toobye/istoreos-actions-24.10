@@ -125,7 +125,7 @@ git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r
 git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
 
 # Adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+# git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # smartdns
 rm -rf feeds/{packages/netsmartdns,luci/applications/luci-app-smartdns}
@@ -168,9 +168,9 @@ rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 # tailscale
-rm -rf feeds/packages/net/tailscale/*
-cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
-sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+# rm -rf feeds/packages/net/tailscale/*
+# cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
+# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
