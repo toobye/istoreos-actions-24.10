@@ -3,6 +3,10 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 
+# 修改内核
+rm -rf /include/kernel-6.6
+cp -af feeds/istoreos_ipk/patch/kernel-6.6  /include/
+
 # 修改名称
 sed -i 's/ImmortalWrt/OpenWrt/' package/base-files/files/bin/config_generate
 sed -i 's/ImmortalWrt/OpenWrt/' include/version.mk
@@ -80,9 +84,9 @@ rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
 rm -rf feeds/istoreos_ipk/op-mosdns
-cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
-cp -af feeds/istoreos_ipk/ddns-go feeds/packages/net/
-cp -af feeds/istoreos_ipk/luci-app-ddns-go feeds/luci/applications/
+# cp -af feeds/istoreos_ipk/patch/wall-luci/luci-app-openclash feeds/luci/applications/
+# cp -af feeds/istoreos_ipk/ddns-go feeds/packages/net/
+# cp -af feeds/istoreos_ipk/luci-app-ddns-go feeds/luci/applications/
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
