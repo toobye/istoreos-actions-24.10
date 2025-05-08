@@ -72,14 +72,11 @@ sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='OpenWrt-$(date +%Y%m%d)
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
-rm -rf feeds/packages/net/ddns-go feeds/luci/applications/luci-app-ddns-go
-rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
-rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,alist,ddns-go}
+rm -rf feeds/luci/applications/{luci-app-openclash,luci-app-alist,luci-app-ddns-go,luci-app-passwall}
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
 rm -rf feeds/istoreos_ipk/op-mosdns
@@ -168,9 +165,9 @@ rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 # tailscale
-# rm -rf feeds/packages/net/tailscale/*
-# cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
-# sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
+rm -rf feeds/packages/net/tailscale/*
+cp -af feeds/istoreos_ipk/tailscale/tailscale/*  feeds/packages/net/tailscale/
+sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
