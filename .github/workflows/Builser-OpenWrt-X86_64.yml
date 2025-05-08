@@ -1,9 +1,13 @@
 name: Builser-immortalwrt-X86_64
 
 on:
+  #自动编译：当Auto-Clean运行完成后
+  workflow_run:
+    workflows: ["Auto-Clean"]
+    types:
+      - completed
+  #手动编译
   workflow_dispatch:
-#  schedule:
-#    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
