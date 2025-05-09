@@ -5,7 +5,7 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 
 # 修改内核
 rm -rf /include/kernel-6.6
-cp -af feeds/istoreos_ipk/patch/kernel-6.6  /include/
+cp -af feeds/istoreos_ipk/patch/kernel-6.6  include/
 
 # 修改名称
 sed -i 's/ImmortalWrt/OpenWrt/' package/base-files/files/bin/config_generate
