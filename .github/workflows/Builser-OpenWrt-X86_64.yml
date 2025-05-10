@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/zijieKwok/immortalwrt.git
+  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/x86_64-immortalwrt.config
   DIY_SCRIPT: diy/diy-immortalwrt.sh
