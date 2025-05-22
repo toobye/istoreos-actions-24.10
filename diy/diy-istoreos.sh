@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # 修改默认IP
-rm -rf package/istoreos-files/Makefile
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
-#sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
+#rm -rf package/istoreos-files/Makefile
+#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
+sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
 #sed -i 's/192.168.1.1/192.168.2.1/g' package/istoreos-files/Makefile
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
