@@ -4,7 +4,7 @@
 #rm -rf package/istoreos-files/Makefile
 #cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
 sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
-#sed -i 's/192.168.1.1/192.168.2.1/g' package/istoreos-files/Makefile
+sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 # sed -i '3 a\\t\t"order": 50,' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
