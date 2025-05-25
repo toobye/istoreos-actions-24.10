@@ -220,7 +220,7 @@ cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
 # 修改登录字符
 rm -rf feeds/luci/modules/luci-base/po/zh_Hans/base.po
-cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/base.po feeds/luci/modules/luci-base/po/zh_Hans/
+cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/base.po feeds/luci/modules/luci-base/po/zh-cn/
 
 # tailscale
 rm -rf feeds/packages/net/tailscale
