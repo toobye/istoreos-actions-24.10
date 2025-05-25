@@ -152,8 +152,9 @@ function merge_package() {
 }
 
 
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-theme-argon
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-app-argon-config
+
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
