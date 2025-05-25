@@ -218,6 +218,10 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 rm -rf package/base-files/files/etc/banner
 cp -af feeds/istoreos_ipk/patch/diy/OpenWrt/banner package/base-files/files/etc/
 
+# 修改登录字符
+rm -rf feeds/luci/modules/luci-base/po/zh_Hans/base.po
+cp -af feeds/istoreos_ipk/patch/diy/base.po feeds/luci/modules/luci-base/po/zh_Hans/
+
 # tailscale
 rm -rf feeds/packages/net/tailscale
 # rm -rf feeds/istoreos_ipk/tailscale/tailscale
