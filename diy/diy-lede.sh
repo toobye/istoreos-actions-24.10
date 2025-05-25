@@ -24,11 +24,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # sed -i 's/procd_set_param stdout 1/procd_set_param stdout 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 # sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
-# 修改默认密码
-#sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-#rm -rf include/version.mk
-#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
-
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
@@ -154,8 +149,8 @@ function merge_package() {
 }
 
 
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-theme-argon
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-app-argon-config
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
