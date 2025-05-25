@@ -78,6 +78,9 @@ rm -rf feeds/luci/applications/{luci-app-openclash,luci-app-alist,luci-app-ddns-
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
+rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/msd_lite
 rm -rf feeds/istoreos_ipk/op-fileBrowser
 rm -rf feeds/istoreos_ipk/op-mosdns
@@ -94,6 +97,9 @@ function git_sparse_clone() {
   mv -f $@ ../package
   cd .. && rm -rf $repodir
 }
+
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-theme-argon
+git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-app-argon-config
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
