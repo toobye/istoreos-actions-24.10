@@ -57,6 +57,9 @@ rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
+rm -rf feeds/istoreos_ipk/vlmcsd
+
+
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
