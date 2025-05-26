@@ -57,7 +57,7 @@ rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
-rm -rf feeds/istoreos_ipk/vlmcsd
+# rm -rf feeds/istoreos_ipk/vlmcsd
 
 
 
