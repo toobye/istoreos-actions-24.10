@@ -1,14 +1,9 @@
 name: Builser-OpenWrt-X86_64
 
-#CI计划
 on:
-  #自动编译：当Auto-Clean运行完成后
-  workflow_run:
-    workflows: ["Auto-Clean"]
-    types:
-      - completed
-  #手动编译
   workflow_dispatch:
+  schedule:
+    - cron: 0 10 * * *
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
