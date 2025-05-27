@@ -60,15 +60,11 @@ rm -rf feeds/istoreos_ipk/patch/istoreos-files
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
-#cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
-#cp -r feeds/theme/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
 
 
-git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-theme-argon
-git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
