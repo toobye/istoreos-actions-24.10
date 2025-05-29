@@ -5,7 +5,7 @@
 #cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
 sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' package/base-files/files/bin/config_generate
+
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -49,6 +49,7 @@ sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/third_party/luci-app-soc
 ##加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='iStoreOS-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
+sed -i "s/OpenWrt/iStoreOS/g" package/base-files/files/bin/config_generate
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
