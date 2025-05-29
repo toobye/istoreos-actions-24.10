@@ -109,13 +109,12 @@ cp -r feeds/small/geoview feeds/packages/net
 
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/third/luci-theme-argon
-rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
-#cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
-rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-argon-config
-rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
-#cp -r feeds/theme/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/third/luci-theme-argon
+rm -rf feeds/third/luci-app-argon-config
+rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
+# rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
+
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -152,9 +151,6 @@ function merge_package() {
 }
 
 
-git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-theme-argon
-git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-app-argon-config
-
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
@@ -162,8 +158,8 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/luci-app-openclash
+git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
