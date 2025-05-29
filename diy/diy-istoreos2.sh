@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # 修改默认IP
+#rm -rf package/istoreos-files/Makefile
+#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
 sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' package/base-files/files/bin/config_generate
@@ -14,7 +16,7 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # 修改默认密码
 sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
 rm -rf include/version.mk
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include/
+cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
 
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
@@ -62,7 +64,9 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
-rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
+# rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
+
+
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -81,8 +85,9 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/luci-app-openclash
+git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
+
 
 # Alist
 git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
@@ -133,7 +138,7 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 
 # 更改 banner
 rm -rf package/base-files/files/etc/banner
-cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
+cp -af feeds/istoreos_ipk/patch/istoreos-24.10/banner package/base-files/files/etc/
 
 # tailscale
 rm -rf feeds/packages/net/tailscale
