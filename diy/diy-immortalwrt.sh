@@ -22,34 +22,6 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # default-settings
 git clone --depth=1 -b openwrt-24.10 https://github.com/Jaykwok2999/default-settings package/default-settings
 
-# Docker
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
-rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
-git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
-sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-pushd feeds/packages
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s https://raw.githubusercontent.com/oppen321/ZeroWrt/refs/heads/openwrt-24.10/files/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
-popd
-
-# uwsgi
-# sed -i 's,procd_set_param stderr 1,procd_set_param stderr 0,g' feeds/packages/net/uwsgi/files/uwsgi.init
-# sed -i 's,buffer-size = 10000,buffer-size = 131072,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-# sed -i 's,logger = luci,#logger = luci,g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-# sed -i '$a cgi-timeout = 600' feeds/packages/net/uwsgi/files-luci-support/luci-*.ini
-# sed -i 's/threads = 1/threads = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-# sed -i 's/processes = 3/processes = 4/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-# sed -i 's/cheaper = 1/cheaper = 2/g' feeds/packages/net/uwsgi/files-luci-support/luci-webui.ini
-
-# rpcd
-# sed -i 's/option timeout 30/option timeout 60/g' package/system/rpcd/files/rpcd.config
-# sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-static/resources/rpc.js
-
 # mwan3
 sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
 
@@ -103,42 +75,18 @@ git_sparse_clone main https://github.com/Jaykwok2999/openwrt-theme luci-app-argo
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
-# git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-#git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-#rm -rf package/helloworld/luci-app-openclash
-
-# Alist
-git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
-
-# Mosdns
-#git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-#git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
+git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 
 # 锐捷认证
 git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
-# Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
-rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
-git clone https://git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
-git clone https://git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
-git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
-git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
-
-# Adguardhome
-# git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
-
 # smartdns
 rm -rf feeds/{packages/netsmartdns,luci/applications/luci-app-smartdns}
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages smartdns luci-app-smartdns
-
-# UPnP
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
 # unzip
 rm -rf feeds/packages/utils/unzip
