@@ -81,27 +81,12 @@ function git_sparse_clone() {
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
-# git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-# git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
 git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 
-
-# Alist
-# git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
-
-# Mosdns
-# git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-# git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
-
-# 锐捷认证
-# git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
-
-# Adguardhome
-# git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # unzip
 rm -rf feeds/packages/utils/unzip
