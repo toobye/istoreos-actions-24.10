@@ -1,9 +1,9 @@
 name: Builser-OpenWrt-X86_64
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: 0 10 * * *
+#  workflow_dispatch:
+#  schedule:
+#    - cron: 0 10 * * *
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
