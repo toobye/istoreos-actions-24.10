@@ -157,8 +157,8 @@ rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/luci-app-openclash
+git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 
 # 锐捷认证
 # git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
