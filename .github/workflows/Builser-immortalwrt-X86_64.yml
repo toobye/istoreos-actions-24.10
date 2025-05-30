@@ -1,9 +1,12 @@
 name: Builser-immortalwrt-X86_64
 
-on:
-#  workflow_dispatch:
+on: 
+  repository_dispatch:
+  workflow_dispatch:
+
+# 定时触发编译
 #  schedule:
-#    - cron: 0 18 * * *
+#    - cron: 0 22 * * *
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt.git
