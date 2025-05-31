@@ -52,6 +52,7 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/third_party/luci-app-LingTiGameAcc
+rm -rf feeds/third_party/luci-app-socat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
 # rm -rf feeds/istoreos_ipk/vlmcsd
