@@ -114,7 +114,7 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 
 # 更改 banner
 rm -rf package/base-files/files/etc/banner
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/banner package/base-files/files/etc/
+cp -af feeds/istoreos_ipk/patch/istoreos-24.10/istoreos2/banner package/base-files/files/etc/
 
 # tailscale
 rm -rf feeds/packages/net/tailscale
