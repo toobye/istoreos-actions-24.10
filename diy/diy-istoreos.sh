@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # 修改默认IP
-#rm -rf package/istoreos-files/Makefile
-#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/Makefile package/istoreos-files
 sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' package/base-files/files/bin/config_generate
-sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' include/version.mk
+# sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' package/base-files/files/bin/config_generate
+# sed -i 's/hostname='OpenWrt'/hostname='iStoreOS'/g' include/version.mk
 
 # TTYD
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
@@ -16,16 +14,11 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 
 # 修改默认密码
 sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-#rm -rf include/version.mk
-#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
 
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
-
-# default-settings
-git clone --depth=1 -b openwrt-24.10 https://github.com/Jaykwok2999/default-settings package/default-settings
 
 # mwan3
 sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
@@ -50,7 +43,6 @@ sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/third_party/luci-app-soc
 ##加入作者信息
 sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='iStoreOS-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
-sed -i "s/OpenWrt/iStoreOS/g" package/base-files/files/bin/config_generate
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
@@ -119,12 +111,9 @@ cp -af feeds/istoreos_ipk/patch/istoreos-24.10/banner package/base-files/files/e
 
 # tailscale
 rm -rf feeds/packages/net/tailscale
-# rm -rf feeds/istoreos_ipk/tailscale/tailscale
-# cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
 sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
 
 # 增加驱动补丁
-# cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/993-bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch target/linux/x86/patches-6.6/
 cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/996-intel-igc-i225-i226-disable-eee.patch target/linux/x86/patches-6.6/
 
 ./scripts/feeds update -a
