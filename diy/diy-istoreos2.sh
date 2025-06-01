@@ -1,4 +1,16 @@
 #!/bin/bash
+mkdir -p files/etc/config
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/openclash > files/etc/config/openclash
+#wget -qO- https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/main_router/openclash > files/etc/config/openclash
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/mosdns > files/etc/config/mosdns
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/smartdns > files/etc/config/smartdns
+
+mkdir -p files/etc
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/opkg.conf > files/etc/opkg.conf
+mkdir -p files/etc/opkg
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf-86
+mkdir -p files/root
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/.profile > files/root/.profile
 
 # 修改默认IP
 sed -i 's/192.168.100.1/192.168.2.1/g' package/istoreos-files/Makefile
@@ -17,9 +29,6 @@ sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/theme
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
 
-# default-settings
-git clone --depth=1 -b openwrt-24.10 https://github.com/Jaykwok2999/default-settings package/default-settings
-
 # mwan3
 sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
 
@@ -37,11 +46,8 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-hd-idle/root/usr/shar
 sed -i 's/msgstr "FileBrowser"/msgstr "文件浏览器"/g' feeds/istoreos_ipk/op-fileBrowser/luci-app-filebrowser/po/zh_Hans/filebrowser.po
 sed -i 's/services/nas/g' feeds/istoreos_ipk/op-fileBrowser/luci-app-filebrowser/root/usr/share/luci/menu.d/luci-app-filebrowser.json
 
-# 修改socat为端口转发
-sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/socat/luci-app-socat/po/zh-cn/socat.po
-
 ##加入作者信息
-sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='iStoreOS-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='iStoreOS-$(date +%Y%m%d%M)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By JayKwok'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
@@ -73,6 +79,35 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
+function merge_package() {
+    # 参数1是分支名,参数2是库地址,参数3是所有文件下载到指定路径。
+    # 同一个仓库下载多个文件夹直接在后面跟文件名或路径，空格分开。
+    if [[ $# -lt 3 ]]; then
+        echo "Syntax error: [$#] [$*]" >&2
+        return 1
+    fi
+    trap 'rm -rf "$tmpdir"' EXIT
+    branch="$1" curl="$2" target_dir="$3" && shift 3
+    rootdir="$PWD"
+    localdir="$target_dir"
+    [ -d "$localdir" ] || mkdir -p "$localdir"
+    tmpdir="$(mktemp -d)" || exit 1
+    git clone -b "$branch" --depth 1 --filter=blob:none --sparse "$curl" "$tmpdir"
+    cd "$tmpdir"
+    git sparse-checkout init --cone
+    git sparse-checkout set "$@"
+    # 使用循环逐个移动文件夹
+    for folder in "$@"; do
+        mv -f "$folder" "$rootdir/$localdir"
+    done
+    cd "$rootdir"
+}
+
+
+git_sparse_clone main https://github.com/Jaykwok2999/socat luci-app-socat
+git_sparse_clone main https://github.com/Jaykwok2999/socat socat
+git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
+
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
@@ -81,12 +116,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/l
 git clone https://github.com/Jaykwok2999/luci-app-passwall.git package/passwall -b main
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 
-
-# 锐捷认证
-# git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
-
-# Lucky
-# git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # unzip
 rm -rf feeds/packages/utils/unzip
