@@ -60,7 +60,7 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
-rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
+#rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -96,7 +96,7 @@ pushd feeds/luci
 popd
 
 pushd
-   curl -sSL https://raw.githubusercontent.com/Jaykwok2999/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+   curl -sSL https://raw.githubusercontent.com/Jaykwok2999/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh --no-sfe
 popd
 
 # NTP
