@@ -108,6 +108,7 @@ jobs:
         sed -i "5isrc-git theme https://github.com/Jaykwok2999/istoreos-theme.git;main\n" feeds.conf.default        
         sed -i "6isrc-git turboacc https://github.com/chenmozhijin/turboacc.git;luci\n" feeds.conf.default        
         sed -i "7isrc-git socat https://github.com/Jaykwok2999/socat.git;main\n" feeds.conf.default        
+        sed -i "8isrc-git alist https://github.com/Jaykwok2999/alist.git;main\n" feeds.conf.default        
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
