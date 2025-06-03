@@ -36,8 +36,13 @@ sed -i 's/services/nas/g' feeds/nas-packages-luci/luci/luci-app-linkease/luasrc/
 # upnp调至NAS
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
+# alist调至NAS
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/po/zh_Hans/alist.po
+sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/po/zh_Hant/alist.po
+
 # HD磁盘工具调至NAS
-sed -i 's/services/nas/g' feeds/luci/applications/luci-app-hd-idle/root/usr/share/luci/menu.d/luci-app-hd-idle.json
+sed -i 's/msgstr "AList"/msgstr "AList文件列表"/g' feeds/luci/applications/luci-app-hd-idle/root/usr/share/luci/menu.d/luci-app-hd-idle.json
 
 # 修改FileBrowser
 sed -i 's/msgstr "FileBrowser"/msgstr "文件浏览器"/g' feeds/istoreos_ipk/op-fileBrowser/luci-app-filebrowser/po/zh_Hans/filebrowser.po
