@@ -36,7 +36,7 @@ sed -i 's/services/nas/g' feeds/nas-packages-luci/luci/luci-app-linkease/luasrc/
 # upnp调至NAS
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 
-# alist调至NAS
+# Alist调至NAS
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-alist/root/usr/share/luci/menu.d/luci-app-alist.json
 sed -i 's/msgstr "AList"/msgstr "AList文件列表"/g' feeds/luci/applications/luci-app-alist/po/zh_Hans/alist.po
 sed -i 's/msgstr "AList"/msgstr "AList文件列表"/g' feeds/luci/applications/luci-app-alist/po/zh_Hant/alist.po
