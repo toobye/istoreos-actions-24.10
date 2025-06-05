@@ -62,7 +62,7 @@ rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
 rm -rf feeds/istoreos_ipk/vlmcsd
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-vlmcsd
-
+rm -rf feeds/package/diy/luci-app-ota
 
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
@@ -110,7 +110,7 @@ function merge_package() {
 git_sparse_clone main https://github.com/Jaykwok2999/socat luci-app-socat
 git_sparse_clone main https://github.com/Jaykwok2999/socat socat
 git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
-
+git_sparse_clone main https://github.com/Jaykwok2999/istoreos-ota luci-app-ota
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
